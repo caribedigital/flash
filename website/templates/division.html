@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+
+{% load static %}
+
+{% block 'content' %}
+
+<h1>Divisi&oacute;n</h1>
+<br>
+<center>
+    {% if my_answer %}
+    <div class="alert alert-{{ color }} alert-dismissible fade show" role="alert">
+        {{ my_answer }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+    
+<br>
+<h1><img src="static/imagenes/{{ num_1 }}.png"> / 
+    <img src="static/imagenes/{{ num_2 }}.png"></h1>
+
+<br><br>
+
+<div class="mb-3">
+    
+    <form action="{% url 'division' %}" method="POST">
+        {% csrf_token %}
+      <input type="text" class="form-control" placeholder="Escriba Su Respuesta Aqu&iacute;" 
+      name="answer">
+      <input type="hidden" name="old_num1" value="{{ num_1 }}">
+      <input type="hidden" name="old_num2" value="{{ num_2 }}">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-secondary">Submit</button>
+    </form>
+</center>
+{% endblock %}
